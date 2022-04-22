@@ -6,8 +6,9 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import type {Node} from 'react';
+import CleverTap from 'clevertap-react-native';
 import {
   SafeAreaView,
   ScrollView,
@@ -54,6 +55,20 @@ const Section = ({children, title}): Node => {
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
+
+  useEffect(()=>{
+
+    CleverTap.createNotificationChannel('clevertap','clevertap','channelDescription',1,true);
+  
+  },[])
+
+  useEffect(()=>{
+    CleverTap.onUserLogin({ Identity: "+911234567890" });
+    CleverTap.recordEvent('Added to Cart', {
+      'Ordered Quantity': 999999,
+    });
+  },[])
+  
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,

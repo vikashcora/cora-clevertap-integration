@@ -10,6 +10,27 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <meta-data
+    android:name="CLEVERTAP_ACCOUNT_ID"
+    android:value="TEST-KKR-555-R46Z"/>
+<meta-data
+    android:name="CLEVERTAP_TOKEN"
+    android:value="TEST-5a5-333"/>
+
+    <service
+    android:name="com.clevertap.android.sdk.FcmTokenListenerService" android:exported="true">
+    <intent-filter>
+        <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+    </intent-filter>
+</service>
+
+<service
+    android:name="com.clevertap.android.sdk.FcmMessageListenerService" android:exported="true">
+    <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+    </intent-filter>
+</service>
+
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
